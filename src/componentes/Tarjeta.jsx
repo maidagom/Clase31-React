@@ -4,9 +4,7 @@ export const Tarjeta = ({datos, setMisPersonajes}) => {
         setMisPersonajes(
             (estadoActual) => {
                 return estadoActual.filter(
-                    function (person) {
-                        return person.name !== nombre
-                    }
+                    (person) => person.name !== nombre
                 )
             }
         )

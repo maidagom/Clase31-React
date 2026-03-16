@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { guardar, obtener, limpiar } from "./utils/almacenamiento.js";
 import { obtenerDatos } from "./utils/llamadas.js";
@@ -16,6 +16,16 @@ export function App() {
         image: ""
     })
 
+    useEffect(
+        () => {
+            document.title =`Personaje actual: ${character.name}`
+            const docu = document.querySelector("html")
+            if (docu.lang == "en" && character.name !== "") {
+                docu.lang = 'es'
+            }
+        }, [misPersonajes]
+    )
+
     function handleSubmit(evento) {
         evento.preventDefault();
         console.log("evento", evento.target[0].value);
@@ -26,11 +36,7 @@ export function App() {
         })
 
         if (obtenido){
-            const encontrado = misPersonajes.find(
-            function (item) {
-                return item.name == obtenido[0].name 
-            }
-           )
+            const encontrado = misPersonajes.find(item => item.name == obtenido[0].name)
            if (encontrado?.id === undefined) {
             Swal.fire({
             text: `Hemos encontrado a ${obtenido[0].name}`,
