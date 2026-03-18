@@ -1,15 +1,15 @@
 #root {
   display: grid;
+  align-content: start;
   align-items: center;
-  height:auto;
+  height:100dvh;
   grid-template-columns: repeat(1, 1fr);
   gap: 16px;
-  text-align: center;
-  padding: 16px;
   width: 100%;
   max-width: 800px;
-  background-color: rgb(22, 40, 75);
-  margin-inline: auto
+  margin-inline: auto;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 .logo {
@@ -60,11 +60,16 @@
 
 form{
   display: flex;
-  width: 100%;
-  margin-inline: auto;
+  background-color: rgb(22, 40, 75);
+  color: aliceblue;
+  padding: 16px;
   justify-content: center;
 }
 
+.contacto{
+  display: flex;
+  flex-direction: column;
+}
 
 .personaje-encontrado{
   border: 1px solid white;
@@ -86,9 +91,31 @@ form{
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 16px;
   img{
     width: 180px;
     height: 180px;
     object-fit: scale-down;
   }
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 36px;
+  a {
+  color: aliceblue;
+  border: 2px solid white;
+  border-radius: 15px;
+  background-color:rgb(22, 40, 75);
+  padding: 15px;
+  font-weight: bold;
+  &.Aqui-estoy{
+    background-color: rgba(253, 155, 85, 0.936);
+  }
+}
+}
+h1{
+  text-align: center;
 }

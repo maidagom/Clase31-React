@@ -4,7 +4,11 @@ import { guardar, obtener, limpiar } from "./utils/almacenamiento.js";
 import { obtenerDatos } from "./utils/llamadas.js";
 import Swal from 'sweetalert2'
 import { Tarjeta } from './componentes/Tarjeta.jsx';
+import { Menu } from './componentes/Menu.jsx';
 
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Contacto } from './páginas/Contacto.jsx';
+import { blog } from './páginas/blog.jsx';
 
 export function App() {
 
@@ -60,19 +64,29 @@ export function App() {
     }
 
     return <>
-    <form onSubmit={handleSubmit} role='search'>
-        <input name='personaje' />
-        <button>Buscar</button>
-    </form>
-    <section className='grilla'>
-        {
-            misPersonajes.map(
-                function (individuo, indice) {
-                    return <Tarjeta key={indice} datos={individuo} setMisPersonajes={setMisPersonajes} />
+        <BrowserRouter>
+        <switch>
+            <Route exact path="/">
+                <Menu />
+                <form onSubmit={handleSubmit} role='search'>
+                <input name='personaje' />
+                <button>Buscar</button>
+                </form>
+                <section className='grilla'>
+                {
+                    misPersonajes.map(
+                        function (individuo, indice) {
+                            return <Tarjeta key={indice} datos={individuo} setMisPersonajes={setMisPersonajes} />
+                        }
+                    )
                 }
-            )
-        }
-        {/*character.id > 0 && <Tarjeta datos={character}  />*/}
-    </section>
+                </section>
+            </Route>
+            <Route path="/contacto.html">
+                <Contacto />
+            </Route>
+            <Route path="/blog" component={blog} />
+        </switch>
+        </BrowserRouter>
     </>
 }
