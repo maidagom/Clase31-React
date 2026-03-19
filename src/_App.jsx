@@ -9,84 +9,50 @@ import { Menu } from './componentes/Menu.jsx';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Contacto } from './páginas/Contacto.jsx';
 import { blog } from './páginas/blog.jsx';
+import { interno } from './páginas/interno.jsx';
 
 export function App() {
 
-    const [personajes, setPersonajes] = useState(JSON.parse(obtener("personajes")))
-    const [misPersonajes, setMisPersonajes] = useState([])
-    const [character, setCharacter] = useState({
-        id: 0,
-        name: "",
-        image: ""
-    })
-
+    const [personajes, setPersonajes] = useState([])
+    const [pagina, setPagina] = useState(1)
+    console.log("aqui");
+    
+    
     useEffect(
         () => {
-            document.title =`Personaje actual: ${character.name}`
-            const docu = document.querySelector("html")
-            if (docu.lang == "en" && character.name !== "") {
-                docu.lang = 'es'
-            }
-        }, [misPersonajes]
-    )
-
-    function handleSubmit(evento) {
-        evento.preventDefault();
-        console.log("evento", evento.target[0].value);
-        const nombre = evento.target[0].value
-
-        const obtenido = personajes.filter(function (personaje) {
-            return personaje.name.includes(nombre)
-        })
-
-        if (obtenido){
-            const encontrado = misPersonajes.find(item => item.name == obtenido[0].name)
-           if (encontrado?.id === undefined) {
-            Swal.fire({
-            text: `Hemos encontrado a ${obtenido[0].name}`,
-            icon: "success"
-            }).then(
-                function (datos) {
-                setCharacter(obtenido [0])
-                setMisPersonajes([...misPersonajes,obtenido [0]])
-                console.log(datos);
+            fetch("https://dragonball-api.com/api/characters?page=1&limit=10").then(
+                peticion => peticion.json()
+            ).then(
+                datos => {
+                    console.log({datos});
+                    setPersonajes(datos.items)
                 }
             )
-           }else{
-            Swal.fire({
-            text: `Ya tienes a ${obtenido[0].name} en tu lista`,
-            icon: "error"
-            })
-           }
+        }, []
+    )
 
-        }
-       
-    }
 
     return <>
         <BrowserRouter>
-        <switch>
+        <Switch>
             <Route exact path="/">
                 <Menu />
-                <form onSubmit={handleSubmit} role='search'>
-                <input name='personaje' />
-                <button>Buscar</button>
-                </form>
                 <section className='grilla'>
-                {
-                    misPersonajes.map(
-                        function (individuo, indice) {
-                            return <Tarjeta key={indice} datos={individuo} setMisPersonajes={setMisPersonajes} />
-                        }
-                    )
-                }
+                    {
+                        personajes.map(
+                            function (individuo, indice) {
+                                return <Tarjeta key={indice} datos={individuo} />
+                            }
+                        )
+                    }
                 </section>
             </Route>
             <Route path="/contacto.html">
                 <Contacto />
             </Route>
             <Route path="/blog" component={blog} />
-        </switch>
+            <Route path="/personajex/:id" component={interno} />
+        </Switch>
         </BrowserRouter>
     </>
 }

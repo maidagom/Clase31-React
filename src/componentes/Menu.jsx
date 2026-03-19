@@ -5,5 +5,6 @@ export const Menu = () => {
         <NavLink activeClassName="Aqui-estoy" to="/" exact>Inicio</NavLink>
         <NavLink activeClassName="Aqui-estoy" to="/blog">Blog</NavLink>
         <NavLink activeClassName="Aqui-estoy" to="/contacto.html">Contacto</NavLink>
+        <NavLink activeClassName="Aqui-estoy" to="/personajex/Goku">Personaje</NavLink>
     </nav>
 }

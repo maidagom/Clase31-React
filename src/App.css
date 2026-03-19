@@ -78,12 +78,13 @@ form{
 }
 
 .personaje-encontrado:hover{
-  background-color: crimson;
+  background-color:chocolate;
   cursor: pointer;
+  color:darkblue;
 }
 
 .personaje-encontrado:active{
-  background-color: darkblue;
+  background-color: rgb(206, 206, 232);
 }
 
 .grilla{
