@@ -1,33 +1,27 @@
 import { Link } from "react-router-dom";
 
-export const Tarjeta = ({datos, setMisPersonajes, enlace=true}) => {
-    const {name: nombre, image: imagen, id} = datos
-    return enlace ?
-    <Link to={`/personajex/${id}`}>
-        <article className='personaje-encontrado' onClick={() => {
-            setMisPersonajes(
-                (estadoActual) => {
-                    return estadoActual.filter(
-                        (person) => person.name !== nombre
-                    )
-                }
-            )
-        }}>
+export const Tarjeta = ({datos, setMisPersonajes, enlace = true}) => {
+    const {name: nombre, image: imagen, id} = datos;
+
+    const handleClick = (e) => {
+        if (setMisPersonajes) {
+            setMisPersonajes((estadoActual) => 
+                estadoActual.filter((person) => person.name !== nombre)
+            );
+        }
+    };
+
+    const Content = (
+        <article className='personaje-encontrado' onClick={handleClick}>
             <h3>{nombre}</h3>
-            <img src={imagen} alt={nombre} />
+            <img src={imagen} alt={nombre} loading="lazy" />
+            {!enlace && <div style={{marginTop: '10px', fontSize: '0.8rem', color: 'var(--db-yellow)'}}>Evolución Alcanzada</div>}
         </article>
-    </Link>
-    :
-    <article className='personaje-encontrado' onClick={() => {
-            setMisPersonajes(
-                (estadoActual) => {
-                    return estadoActual.filter(
-                        (person) => person.name !== nombre
-                    )
-                }
-            )
-        }}>
-            <h3>{nombre}</h3>
-            <img src={imagen} alt={nombre} />
-        </article>
+    );
+
+    return enlace ? (
+        <Link to={`/personajex/${id}`} style={{textDecoration: 'none'}}>
+            {Content}
+        </Link>
+    ) : Content;
 }
