@@ -1,16 +1,56 @@
-# React + Vite
+# 🐉 Explorador de Personajes de Dragon Ball
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación React dinámica para explorar personajes del universo de Dragon Ball, con datos en tiempo real de la API de Dragon Ball, paginación y un blog impulsado por los personajes.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Galería de Personajes**: Explora una vasta lista de guerreros del universo Dragon Ball.
+- **Paginación**: Navega fluidamente a través de múltiples páginas de datos de personajes.
+- **Enrutamiento Dinámico**: Vistas detalladas para cada personaje usando `react-router-dom`.
+- **Blog de Guerreros Z**: Una sección de blog especializada (se integra con un backend PHP local).
+- **Interfaz de Usuario Interactiva**: Diseño moderno y responsivo con estética temática de Dragon Ball.
+- **Gestión de Estado**: Utiliza hooks de React (`useState`, `useEffect`) para un manejo eficiente de los datos.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Framework**: [React 19](https://react.dev/)
+- **Herramienta de Construcción**: [Vite](https://vitejs.dev/)
+- **Enrutamiento**: [React Router v5](https://v5.reactrouter.com/)
+- **API**: [Dragon Ball API](https://dragonball-api.com/)
+- **Estilos**: CSS Personalizado (App.css, index.css)
+- **Utilidades**: [SweetAlert2](https://sweetalert2.github.io/) para alertas pulidas.
 
-## Expanding the ESLint configuration
+## 📦 Instalación y Configuración
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clonar el repositorio**:
+   ```bash
+   git clone <repository-url>
+   cd Clase31-React-main
+   ```
+
+2. **Instalar dependencias**:
+   ```bash
+   npm install
+   ```
+
+3. **Ejecutar el servidor de desarrollo**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Construir para producción**:
+   ```bash
+   npm run build
+   ```
+
+## 📂 Estructura del Proyecto
+
+- `src/componentes`: Componentes de UI reutilizables como `Tarjeta`, `Menu` y `Paginacion`.
+- `src/páginas`: Vistas principales de la aplicación (Inicio, Blog, Contacto, Detalles del Personaje).
+- `src/utils`: Funciones auxiliares para llamadas a la API y almacenamiento local.
+- `src/data`: Datos JSON locales para respaldo o funciones específicas.
+- `ws.php`: Script de backend local para la sección del blog.
+
+## 📝 Nota
+
+La sección del blog requiere un entorno local (como XAMPP) para ejecutar el script `ws.php` si deseas ver la integración con la base de datos local.
